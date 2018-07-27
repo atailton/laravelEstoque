@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-12">
                 <p class="float-left">Detalhes do produto: <strong> {{ $produto->nome or 'nenhuma descrição informada'}} </strong></p>
-                <a href="/produtos"><i style="font-size: 16pt;" class="fa fa-sign-out float-right"></i></a>
+                <a href="{{action('ProdutoController@listagem')}}"><i style="font-size: 16pt;" class="fa fa-sign-out float-right"></i></a>
             </div>
         </div>
     </div>

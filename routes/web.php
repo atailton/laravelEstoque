@@ -17,7 +17,11 @@ Route::get('/produtos', 'ProdutoController@listagem');
 //Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra'); //Se quiser filtrar tipo de dado usa abaixo
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')->where('id', '[0-9]+'); //filtrando dados por regex
 Route::get('/produtos/novo', 'ProdutoController@novo');
+Route::get('/produtos/listaJson', 'ProdutoController@listaJson');
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
+Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
+Route::get('/produtos/editar/{id}', 'ProdutoController@editar');
+Route::post('/produtos/atualiza/{id}', 'ProdutoController@atualiza');
 
 /*Route::match(array('GET', 'POST'), 
   '/produtos/adiciona', 

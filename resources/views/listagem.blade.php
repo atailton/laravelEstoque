@@ -7,6 +7,11 @@
         Produto <strong>{{ old('nome') }}</strong> adicionado com sucesso!
 </div>
 @endif
+@if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+    </div>
+@endif
 <div class="card">
     
     <div class="card-header">
@@ -27,6 +32,13 @@
                 <td><?= $p->quantidade ?></td>
                 <td> 
                     <a href="/produtos/mostra/<?= $p->id ?>"><i class="fa fa-search"></i></a>
+                </td>
+                
+                <td> 
+                    <a href="/produtos/editar/<?= $p->id ?>"><i class="fa fa-edit text-success"></i></a>
+                </td>
+                <td> 
+                    <a href="/produtos/remove/<?= $p->id ?>"><i class="fa fa-trash-o text-danger"></i></a>
                 </td>
             </tr>
             @endforeach

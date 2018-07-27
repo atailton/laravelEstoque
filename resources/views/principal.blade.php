@@ -9,7 +9,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="col-md-7 offset-3">
+        <div class="col-md-8 offset-2">
            @yield('conteudo')     
         </div>  
         <script src="{{ asset('js/app.js') }}"></script>

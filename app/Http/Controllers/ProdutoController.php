@@ -11,13 +11,29 @@ use estoque\Produto;
 use Request;
 use estoque\Http\Requests\ProdutosRequest;
 
-
-
 class ProdutoController extends BaseController {
 
     use AuthorizesRequests,
         DispatchesJobs,
         ValidatesRequests;
+
+    public function __construct() {
+        
+        $this->middleware('auth', ['only' =>
+            ['listagem',
+                'adiciona',
+                'remove',
+                'mostra',
+                'listaJson',
+                'editar',
+                'atualiza',
+                'novo'
+            ]
+        ]);
+        
+        //$this->middleware('auth'); para todo mundo
+
+    }
 
     public function listagem() {
 
@@ -55,45 +71,42 @@ class ProdutoController extends BaseController {
         //$valor = Request::input('valor');
         //$quantidade = Request::input('quantidade');
 
-            /* DB::insert('insert into produtos 
-              (nome, valor, descricao, quantidade) values (?,?,?,?)', array($nome, $valor, $descricao, $quantidade)); */
+        /* DB::insert('insert into produtos 
+          (nome, valor, descricao, quantidade) values (?,?,?,?)', array($nome, $valor, $descricao, $quantidade)); */
 
-            /* DB::table('produtos')->insert(
-              ['nome' => $nome,
-              'valor' => $valor,
-              'descricao' => $descricao,
-              'quantidade' => $quantidade
-              ]
-              ); */
+        /* DB::table('produtos')->insert(
+          ['nome' => $nome,
+          'valor' => $valor,
+          'descricao' => $descricao,
+          'quantidade' => $quantidade
+          ]
+          ); */
 
-            /*
-            $produto = new Produto(); // cria um objeto
-            $produto->nome = Request::input('nome');
-            $produto->valor = Request::input('valor');
-            $produto->descricao = Request::input('descricao');
-            $produto->quantidade = Request::input('quantidade');
+        /*
+          $produto = new Produto(); // cria um objeto
+          $produto->nome = Request::input('nome');
+          $produto->valor = Request::input('valor');
+          $produto->descricao = Request::input('descricao');
+          $produto->quantidade = Request::input('quantidade');
 
-            $produto->save();&/
+          $produto->save();&/
 
-            //ou
+          //ou
 
-            /* $params = Request::all();
-              $produto = new Produto($params);
-              $produto->save(); */
+          /* $params = Request::all();
+          $produto = new Produto($params);
+          $produto->save(); */
 
-            //ou
-            //Produto::create(Request::all());
-            
-            //com uso da validação
-            Produto::create($request->all());
+        //ou
+        //Produto::create(Request::all());
+        //com uso da validação
+        Produto::create($request->all());
 
-            return redirect()->action('ProdutoController@listagem')->withInput(); //o helpper withinput envia os inputos para o redirect
-            //ou pode colocar Request::only('nome') dentro do withInput para passar apenas o nome
-            //pode dizer qual dado não deve ser passado Request::except('senha')
-            //pode se passar o caminho dentro do redirect ou o controlador/método de destino usando o action
-            //redirect('produtos') ou redirect()->action('ProdutoController@listagem')
-        
-        
+        return redirect()->action('ProdutoController@listagem')->withInput(); //o helpper withinput envia os inputos para o redirect
+        //ou pode colocar Request::only('nome') dentro do withInput para passar apenas o nome
+        //pode dizer qual dado não deve ser passado Request::except('senha')
+        //pode se passar o caminho dentro do redirect ou o controlador/método de destino usando o action
+        //redirect('produtos') ou redirect()->action('ProdutoController@listagem')
     }
 
     public function novo() {

@@ -13,15 +13,15 @@
 
 Route::get('/', function () { return view('welcome'); });
 Route::get('/index', function () { return view('index'); });
-Route::get('/produtos', 'ProdutoController@listagem')->middleware('produtos');
+Route::get('/produtos', 'ProdutoController@listagem');
 //Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra'); //Se quiser filtrar tipo de dado usa abaixo
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')->where('id', '[0-9]+')->middleware('produtos'); //filtrando dados por regex
-Route::get('/produtos/novo', 'ProdutoController@novo')->middleware('produtos');
-Route::get('/produtos/listaJson', 'ProdutoController@listaJson')->middleware('produtos');
-Route::post('/produtos/adiciona', 'ProdutoController@adiciona')->middleware('produtos');
-Route::get('/produtos/remove/{id}', 'ProdutoController@remove')->middleware('produtos');
-Route::get('/produtos/editar/{id}', 'ProdutoController@editar')->middleware('produtos');
-Route::post('/produtos/atualiza/{id}', 'ProdutoController@atualiza')->middleware('produtos');
+Route::get('/produtos/novo', 'ProdutoController@novo');
+Route::get('/produtos/listaJson', 'ProdutoController@listaJson');
+Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
+Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
+Route::get('/produtos/editar/{id}', 'ProdutoController@editar');
+Route::post('/produtos/atualiza/{id}', 'ProdutoController@atualiza')->middleware('produtos'); //pode usar assim
 
 
 

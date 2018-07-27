@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 use estoque\Produto;
 use Request;
+use estoque\Http\Requests\ProdutosRequest;
+
+
 
 class ProdutoController extends BaseController {
 
@@ -45,14 +48,13 @@ class ProdutoController extends BaseController {
         return view('mostra', $data);
     }
 
-    public function adiciona() {
+    public function adiciona(ProdutosRequest $request) {
 
-        $nome = Request::input('nome');
-        $descricao = Request::input('descricao');
-        $valor = Request::input('valor');
-        $quantidade = Request::input('quantidade');
+        //$nome = Request::input('nome');
+        //$descricao = Request::input('descricao');
+        //$valor = Request::input('valor');
+        //$quantidade = Request::input('quantidade');
 
-        if ($nome) {
             /* DB::insert('insert into produtos 
               (nome, valor, descricao, quantidade) values (?,?,?,?)', array($nome, $valor, $descricao, $quantidade)); */
 
@@ -64,13 +66,14 @@ class ProdutoController extends BaseController {
               ]
               ); */
 
+            /*
             $produto = new Produto(); // cria um objeto
             $produto->nome = Request::input('nome');
             $produto->valor = Request::input('valor');
             $produto->descricao = Request::input('descricao');
             $produto->quantidade = Request::input('quantidade');
 
-            $produto->save();
+            $produto->save();&/
 
             //ou
 
@@ -80,13 +83,17 @@ class ProdutoController extends BaseController {
 
             //ou
             //Produto::create(Request::all());
+            
+            //com uso da validação
+            Produto::create($request->all());
 
             return redirect()->action('ProdutoController@listagem')->withInput(); //o helpper withinput envia os inputos para o redirect
             //ou pode colocar Request::only('nome') dentro do withInput para passar apenas o nome
             //pode dizer qual dado não deve ser passado Request::except('senha')
             //pode se passar o caminho dentro do redirect ou o controlador/método de destino usando o action
             //redirect('produtos') ou redirect()->action('ProdutoController@listagem')
-        }
+        
+        
     }
 
     public function novo() {
@@ -114,18 +121,19 @@ class ProdutoController extends BaseController {
         $produto = Produto::find($id);
         $data['produto'] = $produto;
 
+
         return view('editar', $data);
     }
 
     public function atualiza($id) {
 
         $produto = Produto::find($id);
-        
+
         $produto->nome = Request::input('nome');
         $produto->valor = Request::input('valor');
         $produto->descricao = Request::input('descricao');
         $produto->quantidade = Request::input('quantidade');
-        
+
         $produto->save();
 
         return redirect()->action('ProdutoController@listagem')->with('status', 'Protudo atualizado');

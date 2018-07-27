@@ -1,7 +1,8 @@
-@extends('principal')
+@extends('layouts.app')
 
-@section('conteudo')
-<br/><br/>
+@section('content')
+<div class="container">
+    <div class="col-md-8 offset-2">
 @if(old('nome'))
 <div class="alert alert-success" role="alert">
         Produto <strong>{{ old('nome') }}</strong> adicionado com sucesso!
@@ -52,6 +53,7 @@
         Um ou menos itens no estoque
     </span>
 </h4>
-
+</div>
+</div>
 @endif
 @stop

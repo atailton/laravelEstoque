@@ -43,8 +43,8 @@ class ProdutoController extends BaseController {
         $produtos = Produto::all();
 
         $data['produtos'] = $produtos;
-        return view('listagem', $data);
-        //view()->file('/caminho/para/sua/view');
+        return view('produtos.listagem', $data);
+        //return view()->file('/produtos/listagem.blade', $data);
     }
 
     public function mostra($id) {
@@ -61,7 +61,7 @@ class ProdutoController extends BaseController {
 
         //$data['produto'] = $produto[0];
         $data['produto'] = $produto;
-        return view('mostra', $data);
+        return view('produtos.mostra', $data);
     }
 
     public function adiciona(ProdutosRequest $request) {
@@ -110,7 +110,7 @@ class ProdutoController extends BaseController {
     }
 
     public function novo() {
-        return view('novo');
+        return view('produtos.novo');
     }
 
     public function listaJson() {
@@ -135,7 +135,7 @@ class ProdutoController extends BaseController {
         $data['produto'] = $produto;
 
 
-        return view('editar', $data);
+        return view('produtos.editar', $data);
     }
 
     public function atualiza($id) {

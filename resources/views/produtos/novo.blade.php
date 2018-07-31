@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <div class="col-md-8 offset-2">
+    <div class="col-md-12">
         @foreach($errors->all() as $error)
         <span style="margin-bottom: 10px;" class="badge badge-danger">{{ $error }}</span> 
         @endforeach

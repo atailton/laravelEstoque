@@ -2,16 +2,16 @@
 
 @section('content')
 
-@if ($produto)
+@if ($usuario)
 <div class="container">
-    <div class="col-md-8 offset-2">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-header">
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="float-left">Detalhes do produto: <strong> {{ $produto->nome or 'nenhuma descrição informada'}} </strong></p>
-                        <a href="{{action('ProdutoController@listagem')}}"><i style="font-size: 16pt;" class="fa fa-sign-out float-right"></i></a>
+                        <p class="float-left">Detalhes do usuário: <strong> {{ $usuario->name }} </strong></p>
+                        <a href="{{action('UsuarioController@listagem')}}"><i style="font-size: 16pt;" class="fa fa-sign-out float-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -20,13 +20,10 @@
                 <table class="table table-hover">
                     <tr>
                         <td>
-                            <b>Valor:</b> R$ {{ $produto->valor }}
+                            <b>Nome:</b> {{ $usuario->name }}
                         </td>
                         <td>
-                            <b>Descrição:</b> {{ $produto->descricao }} 
-                        </td>
-                        <td>
-                            <b>Quantidade em estoque:</b> {{ $produto->quantidade }} 
+                            <b>E-mail:</b> {{ $usuario->email }} 
                         </td>
                     </tr>
                 </table>  

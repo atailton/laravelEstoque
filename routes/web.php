@@ -11,8 +11,12 @@
 |
 */
 
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/', function () { return view('welcome'); });
 Route::get('/index', function () { return view('index'); });
+
 Route::get('/produtos', 'ProdutoController@listagem');
 //Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra'); //Se quiser filtrar tipo de dado usa abaixo
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')->where('id', '[0-9]+')->middleware('produtos'); //filtrando dados por regex
@@ -23,11 +27,13 @@ Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
 Route::get('/produtos/editar/{id}', 'ProdutoController@editar');
 Route::post('/produtos/atualiza/{id}', 'ProdutoController@atualiza')->middleware('produtos'); //pode usar assim
 
+Route::get('/usuarios', 'UsuarioController@listagem');
+Route::get('/usuarios/mostra/{id}', 'UsuarioController@mostra')->where('id', '[0-9]+');
+
+
 
 
 /*Route::match(array('GET', 'POST'), 
   '/produtos/adiciona', 
   'ProdutoController@adiciona');*/
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');

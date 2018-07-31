@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="col-md-8 offset-2">
+<div class="">
+    <div class="col-md-12">
 @if(old('nome'))
 <div class="alert alert-success" role="alert">
         Produto <strong>{{ old('nome') }}</strong> adicionado com sucesso!
